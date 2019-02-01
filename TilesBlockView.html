@@ -1,0 +1,71 @@
+<div data-ng-controller="TilesBlock.Controller" class="accordion">
+	<div style="text-align: right;" ng-if="sortMode">
+		<umb-button alias="reorder"
+					type="button"
+					button-style="link"
+					label-key="{{reorderKey}}"
+					icon="icon-navigation"
+					action="toggleAccordionSortMode();">
+		</umb-button>
+	</div>
+	<div id="accordion">
+		<div class="accordion-tab accordion-group" data-ng-repeat="item in control.value">
+			<!--<div class="accordion-inner">
+				<div class="accordion-heading" ng-if="!sortMode">
+					<input data-ng-model="item.title" placeholder="Title" class="accordion-tab__title" required />
+				</div>
+				<div class="accordion-heading accordion-tab__title .umb-control-collapsed" ng-if="sortMode">
+					{{item.title}}
+				</div>
+				<div class="accordion-tab__description" ng-if="!sortMode">
+					<div ng-controller="Umbraco.PropertyEditors.Grid.RichTextEditorController as vm">
+						<div grid-rte
+							 value="item.description"
+							 unique-id="control.$uniqueId + $index"
+							 on-link-picker-click="vm.openLinkPicker"
+							 on-media-picker-click="vm.openMediaPicker"
+							 on-embed-click="vm.openEmbed"
+							 on-macro-picker-click="vm.openMacroPicker">
+						</div>
+						<umb-overlay ng-if="vm.linkPickerOverlay.show"
+									 model="vm.linkPickerOverlay"
+									 position="right"
+									 view="vm.linkPickerOverlay.view">
+						</umb-overlay>
+						<umb-overlay ng-if="vm.mediaPickerOverlay.show"
+									 model="vm.mediaPickerOverlay"
+									 position="right"
+									 view="vm.mediaPickerOverlay.view">
+						</umb-overlay>
+						<umb-overlay ng-if="vm.embedOverlay.show"
+									 model="vm.embedOverlay"
+									 position="right"
+									 view="vm.embedOverlay.view">
+						</umb-overlay>
+						<umb-overlay ng-if="vm.macroPickerOverlay.show"
+									 model="vm.macroPickerOverlay"
+									 view="vm.macroPickerOverlay.view"
+									 position="right">
+						</umb-overlay>
+					</div>
+				</div>
+			</div>
+			<div class="accordion-tab__remove-btn" ng-if="!sortMode">
+				<a href="" class="iconBox" data-ng-click="removeItem(item)">
+					<i class=" icon icon-remove" title="Remove item"></i>
+				</a>
+			</div>-->
+		</div>
+	</div>
+	<div class="umb-add-row accordion-tab__add-btn" ng-if="!sortMode && ((control.value.length > 0 && control.active) || control.value.length == 0)">
+		Add new Tile<br />
+		<a href="" class="iconBox" ng-click="openOverlay($event)">
+			<i class=" icon icon-add" title="Add new tile"></i>
+		</a>
+	</div>
+	<umb-overlay ng-if="overlay.show"
+				 model="overlay"
+				 view="overlay.view"
+				 position="target">
+	</umb-overlay>
+</div>
