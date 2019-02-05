@@ -1,24 +1,29 @@
 <div data-ng-controller="TilesBlock.Controller" class="accordion umb-pane">
-	<div style="text-align: right;" ng-if="sortMode">
-		<umb-button alias="reorder"
-					type="button"
-					button-style="link"
-					label-key="{{reorderKey}}"
-					icon="icon-navigation"
-					action="toggleAccordionSortMode();">
-		</umb-button>
-	</div>
-	<div id="accordion">
+
+	<div id="tilesBlock">
 		<div ng-repeat="item in control.value">
 
 			<div class="umb-box news-tile" ng-if="item.type == 'newsTile'">
 				<div class="umb-box-header">
-					<div class="umb-box-header-title">
-						News tile <span ng-if="!control.active"> - {{item.contentName}}</span>
+					<div class="umb-box-header-title umb-row-title-bar">
+						<div class="umb-control-title">
+							News tile <span ng-if="!control.active"> - {{item.contentName}}</span>
+						</div>
+						<div class="umb-tools ng-scope" ng-if="control.active">
+							<div class="umb-control-tool">
+								<i class="umb-control-tool-icon icon-trash" ng-click="togglePrompt(item)"></i>
+								<umb-confirm-action ng-if="item.deletePrompt"
+													direction="left"
+													on-confirm="removeItem(item)"
+													on-cancel="hidePrompt(item)">
+								</umb-confirm-action>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="block-form umb-box-content" ng-if="control.active">
 					<div class="nav nav-stacked" style="margin-bottom: 0;">
+						<input type="hidden" ng-model="item.contentId" required name="contentId"/>
 						<a ng-click="openContentPickerDialog(item)">
 							<i class="icon icon-window-popin"></i>
 							<span>{{item.contentName}}</span>
@@ -29,8 +34,20 @@
 
 			<div class="umb-box custom-tile" ng-if="item.type == 'customTile'">
 				<div class="umb-box-header">
-					<div class="umb-box-header-title">
-						Custom tile <span ng-if="!control.active"> - {{item.title}}</span>
+					<div class="umb-box-header-title umb-row-title-bar">
+						<div class="umb-control-title">
+							Custom tile <span ng-if="!control.active"> - {{item.title}}</span>
+						</div>
+						<div class="umb-tools ng-scope" ng-if="control.active">
+							<div class="umb-control-tool">
+								<i class="umb-control-tool-icon icon-trash" ng-click="togglePrompt(item)"></i>
+								<umb-confirm-action ng-if="item.deletePrompt"
+													direction="left"
+													on-confirm="removeItem(item)"
+													on-cancel="hidePrompt(item)">
+								</umb-confirm-action>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="block-form umb-box-content" ng-if="control.active">
@@ -51,7 +68,7 @@
 						<div class="control-group umb-control-group">
 							<div class="umb-el-wrap">
 								<label class="control-label">
-									<span>Eyebrow</span>
+									<span>Category \ Eyebrow</span>
 								</label>
 								<div class="controls controls-row">
 									<input type="text" class="input-block-level" ng-model="item.eyebrow" />

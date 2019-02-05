@@ -3,7 +3,7 @@ angular.module("umbraco").controller("TilesBlock.Controller", function ($scope, 
 	$scope.sortMode = false;
 
 	function Item(type) {
-		this.contentId = 0;
+		this.contentId = null;
 		this.contentName = 'Choose an item...';
 		this.type = type;
 		this.title = '';
@@ -106,7 +106,7 @@ angular.module("umbraco").controller("TilesBlock.Controller", function ($scope, 
 		$scope.control.value[$scope.control.value.indexOf(item)].image = null;
 	};
 
-
+	//GibeLinkPicker
 	var ngi = angular.element('body').injector();
 	var uDialogService = ngi.get('dialogService');
 	$scope.chooseLink = function(item) {
@@ -129,6 +129,7 @@ angular.module("umbraco").controller("TilesBlock.Controller", function ($scope, 
 		});
 	}
 
+	//GibeLinkPicker
 	$scope.editLink = function (item) {
 		uDialogService.open({
 			template: '../App_Plugins/GibeLinkPicker/Dialogs/linkpicker.html',
