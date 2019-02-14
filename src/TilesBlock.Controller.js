@@ -26,11 +26,11 @@ angular.module("umbraco").controller("TilesBlock.Controller", function ($scope, 
 	}
 
 	$scope.availableItems = [
-		{
+		/*{
 			alias: 'newsTile',
 			name: 'News tile',
 			icon: 'icon-newspaper-alt'
-		},
+		}*/,
 		{
 			alias: 'customTile',
 			name: 'Custom tile',

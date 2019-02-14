@@ -2,6 +2,7 @@ using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Umbraco.Web;
+using Umbraco.Core.Models;
 
 namespace Graph.Components.TilesBlock
 {
@@ -36,13 +37,16 @@ namespace Graph.Components.TilesBlock
 				{
 					var newsTile = new GridControlNewsTile
 					{
-						Title = item.GetPropertyValue<string>("title")
+						Title = item.GetPropertyValue<string>(NewsTileConfig.Title),
+						Description = item.GetPropertyValue<string>(NewsTileConfig.Description),
+						Date = item.GetPropertyValue<DateTime>(NewsTileConfig.Date),
+						Link = item.Url,
+						Image = item.GetPropertyValue<IPublishedContent>(NewsTileConfig.Image).Url
 					};
 
 					return newsTile;
 				}
 			}
-			
 
 			return null;
 		}
@@ -54,4 +58,3 @@ namespace Graph.Components.TilesBlock
 		}
 	}
 }
-
