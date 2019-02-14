@@ -30,22 +30,20 @@ namespace Graph.Components.TilesBlock
 		private static object MapToNewsTile(JObject tile)
 		{
 			var contentId = tile.Value<int>("contentId");
-			if (contentId > 0)
-			{
-				var item = new UmbracoHelper(UmbracoContext.Current).TypedContent(contentId);
-				if (item != null)
-				{
-					var newsTile = new GridControlNewsTile
-					{
-						Title = item.GetPropertyValue<string>(NewsTileConfig.Title),
-						Description = item.GetPropertyValue<string>(NewsTileConfig.Description),
-						Date = item.GetPropertyValue<DateTime>(NewsTileConfig.Date),
-						Link = item.Url,
-						Image = item.GetPropertyValue<IPublishedContent>(NewsTileConfig.Image).Url
-					};
 
-					return newsTile;
-				}
+			var item = new UmbracoHelper(UmbracoContext.Current).TypedContent(contentId);
+			if (item != null)
+			{
+				var newsTile = new GridControlNewsTile
+				{
+					Title = item.GetPropertyValue<string>(NewsTileConfig.Title),
+					Description = item.GetPropertyValue<string>(NewsTileConfig.Description),
+					Date = item.GetPropertyValue<DateTime>(NewsTileConfig.Date),
+					Link = item.Url,
+					Image = item.GetPropertyValue<IPublishedContent>(NewsTileConfig.Image).Url
+				};
+
+				return newsTile;
 			}
 
 			return null;
