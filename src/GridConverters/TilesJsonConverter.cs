@@ -40,7 +40,7 @@ namespace Graph.Components.TilesBlock
 					Description = item.GetPropertyValue<string>(NewsTileConfig.Description),
 					Date = item.GetPropertyValue<DateTime>(NewsTileConfig.Date),
 					Link = item.Url,
-					Image = item.GetPropertyValue<IPublishedContent>(NewsTileConfig.Image).Url
+					Image = item.GetPropertyValue<IPublishedContent>(NewsTileConfig.Image)?.Url
 				};
 
 				return newsTile;
